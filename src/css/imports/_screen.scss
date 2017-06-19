@@ -1,0 +1,30 @@
+@mixin normalDesktop {
+	@media (max-width: 1024px) {
+		@content
+	}
+};
+@mixin minDesktop {
+	@media (max-width: 1023px) {
+		@content
+	}
+};
+@mixin normalPad {
+	@media (max-width: 768px) {
+		@content
+	}
+};
+@mixin bigPhone {
+	@media (max-width: 767px) {
+		@content
+	}
+};
+@mixin midPhone {
+	@media (max-width: 568px) {
+		@content
+	}
+};
+@mixin minPhone {
+	@media (max-width: 414px) {
+		@content
+	}
+};
