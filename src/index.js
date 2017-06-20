@@ -25,12 +25,34 @@ document.querySelector('#container').insertAdjacentHTML('beforeend', initLoadHtm
 
 /* Customize JS code - Start */
 
-const menuCoverEle = document.querySelector('#menu-cover');
+const menuBtn = document.querySelector('#menu-btn');
+const menuCoverEle = document.querySelector('#menu-nav-cover');
+const menuCoverImg = document.querySelector('#menu-cover-img');
 const menuNavEles = document.querySelectorAll('#menu-nav a');
-menuNavEles.forEach(nav => nav.addEventListener('mouseover', menuNavChangeImg));
+
+menuBtn.addEventListener('click', showMenuCover);
+menuNavEles.forEach(nav => {
+	nav.addEventListener('mouseover', menuNavChangeImg);
+	nav.addEventListener('mouseout', showOriginalImg);
+});
+
+function showMenuCover() {
+	const menuChecked = document.querySelector(`#${this.htmlFor}`).checked;
+	if (!menuChecked) {
+		menuCoverEle.classList.add('cover-show');
+	} else {
+		menuCoverEle.classList.remove('cover-show');
+	}
+}
 
 function menuNavChangeImg(e) {
     e.preventDefault();
-	const imgType = this.dataset.type;
-	menuCoverEle.style.backgroundImage = `url(./src/img/${imgType}.jpg)`;
+	menuCoverImg.src = `./src/img/${this.dataset.type}.jpg`;
+	menuCoverImg.classList.add('img-zoom');
+}
+
+function showOriginalImg(e) {
+	e.preventDefault();
+	menuCoverImg.src = './src/img/general.jpg';
+	menuCoverImg.classList.remove('img-zoom');
 }
